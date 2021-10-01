@@ -15,7 +15,6 @@ do{
             alert("La operación introducida es erronea, Prueba de nuevo con una que esté indicada 🙄");
         }
     } while (condition);
-
     do {
         nums = prompt('Introduce dos numeros separados por un espacio');
         // Quitamos los espacios de mas, y los cambiamos por solo 1 espacio
