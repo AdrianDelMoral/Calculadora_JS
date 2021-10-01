@@ -38,7 +38,7 @@ alert('Bienvenido/a a la calculadora de JavaScript');
 
                 case "-":
                 // Restar
-                    alert('Has seleccionado la opción Sumar.\n');    
+                    alert('Has seleccionado la opción Restar.\n');    
                     nums = prompt('Introduce dos numeros separados por un espacio');
                     // Quitamos los espacios de mas, y los cambiamos por solo 1 espacio
                     // \s se refiere a cualquier símbolo de espacio en blanco: espacios, tabulaciones y saltos de línea.
@@ -63,7 +63,7 @@ alert('Bienvenido/a a la calculadora de JavaScript');
                 break;
                 case "*":
                 // Multipicar
-                    alert('Has seleccionado la opción Sumar.\n');    
+                    alert('Has seleccionado la opción Multiplicar.\n');    
                     nums = prompt('Introduce dos numeros separados por un espacio');
                     // Quitamos los espacios de mas, y los cambiamos por solo 1 espacio
                     // \s se refiere a cualquier símbolo de espacio en blanco: espacios, tabulaciones y saltos de línea.
@@ -88,7 +88,7 @@ alert('Bienvenido/a a la calculadora de JavaScript');
                 break;
                 case "/":
                     // Dividir
-                        alert('Has seleccionado la opción Sumar.\n');    
+                        alert('Has seleccionado la opción Dividir.\n');    
                         nums = prompt('Introduce dos numeros separados por un espacio');
                         // Quitamos los espacios de mas, y los cambiamos por solo 1 espacio
                         // \s se refiere a cualquier símbolo de espacio en blanco: espacios, tabulaciones y saltos de línea.
