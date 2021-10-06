@@ -41,24 +41,28 @@ let pedirYComprobarNumeros = function() {
 }
 
 // Punto 3 - Funciones Arrow - Realizar las operaciones (1 función para cada operación, 4 en total)
-let resultadoFinal = (opcionOperacion,numeros) => {
+function resultadoFinal(opcionOperacion,numeros){
     let num1 = Number(numeros[0]);
     let num2 = Number(numeros[1]);
     switch (opcionOperacion) {
         case "+":
-            alert("El resultado de la Suma es: " + (num1+num2));
+            let sumar = (num1,num2) => (alert("El resultado de la Suma es: " + (num1+num2)));
+            sumar(num1,num2);
             break;
     
         case "-":
-            alert("El resultado de la Restar es: " + (num1-num2));
+            let restar = (num1,num2) => (alert("El resultado de la Restar es: " + (num1-num2)));
+            restar(num1,num2);
         break;
 
         case "*":
-            alert("El resultado de la Multiplicación es: " + (num1*num2));
+            let multiplicar = (num1,num2) => (alert("El resultado de la Multiplicación es: " + (num1*num2)));
+            multiplicar(num1,num2);
         break;
 
         case "/":
-            alert("El resultado de la División es: " + (num1/num2));
+            let dividir = (num1,num2) => (alert("El resultado de la División es: " + (num1/num2)));
+            dividir(num1,num2);
         break;
     }
 }
