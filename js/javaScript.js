@@ -1,5 +1,7 @@
-// Punto 1 - Función Normal: Pedir la operación que se quiere realizar y validarla (al menos 1 función)
-function pedirOperacion() {
+let lastResult = 0;
+let opcion;
+
+let operacion_a_Hacer = function() {
     let condition = true;
     let opcion = null;
     do {
@@ -14,71 +16,112 @@ function pedirOperacion() {
     } while (condition);
     
     return opcion;
-}
+};
 
-// Punto 2 - Expresión de función: Pedir los operandos y validarlos (al menos una función)
 let pedirYComprobarNumeros = function() {
     let condition2 = true;
     do {
         nums = prompt('Introduce dos numeros separados por un espacio');
-        // Quitamos los espacios de mas, y los cambiamos por solo 1 espacio
-        // \s se refiere a cualquier símbolo de espacio en blanco: espacios, tabulaciones y saltos de línea.
         nums = nums.replace(/\s+/g, " ");
 
-        arrayNumeros = nums.split(' ') // (1) [ num1, num1 ]
+        arrayNumeros = nums.split(' ') // (1) [ num1, num2 ]
         num1 = arrayNumeros[0] // (2) num1
         num2 = arrayNumeros[1] // (3) num2
         // Comprobar que son numeros solo y no contienen letras y salir del bucle si es verdad
-        if(isNaN(num1) === false && isNaN(num2) === false){
-            num1 = Number(num1);
-            num2 = Number(num2);
+        if(isNaN(num1) === false && isNaN(num2) === false || num1 == 'r' || num1 == 'R' || num2 == 'R' || num2 == 'r'){
+            if(num1 == 'r' ||num1 == 'R'){
+                // console.log("Num1 es R:");
+                // console.log("Numero1:" + num1 + " Numero2: " + num2);
+                num1 = calculadora.lastResult;
+                num2 = Number(num2);
+                arrayNumeros[0] = num1;
+            }else if(num2 == 'r' || num2 == 'R'){
+                // console.log("Num2 es R:");
+                // console.log("Numero1:" + num1 + " Numero2: " +num2);
+                num1 = Number(num1);
+                num2 = calculadora.lastResult;
+                arrayNumeros[1] = num2;
+            }else{
+                // console.log("NO HAY R Numero1: " + num1 + " Numero2: " +num2);
+                num1 = Number(num1);
+                num2 = Number(num2);
+            };
+
             condition2 = false;         
         }else{
             alert("Error tienen que ser numeros, numeros y no numeros y letras!");
         }
     } while (condition2);
     return arrayNumeros;
-}
+};
 
-// Punto 3 - Funciones Arrow - Realizar las operaciones (1 función para cada operación, 4 en total)
-function resultadoFinal(opcionOperacion,numeros){
-    let num1 = Number(numeros[0]);
-    let num2 = Number(numeros[1]);
-    switch (opcionOperacion) {
+let resultadoFinal = function(opcion,numeros){
+    switch (opcion) {
         case "+":
-            let sumar = (num1,num2) => (alert("El resultado de la Suma es: " + (num1+num2)));
-            sumar(num1,num2);
+            calculadora.lastResult = calculadora.sum(numeros);  
             break;
-    
+
         case "-":
-            let restar = (num1,num2) => (alert("El resultado de la Restar es: " + (num1-num2)));
-            restar(num1,num2);
+            calculadora.lastResult = calculadora.res(numeros);
         break;
 
         case "*":
-            let multiplicar = (num1,num2) => (alert("El resultado de la Multiplicación es: " + (num1*num2)));
-            multiplicar(num1,num2);
+            calculadora.lastResult = calculadora.mul(numeros);
         break;
 
         case "/":
-            let dividir = (num1,num2) => (alert("El resultado de la División es: " + (num1/num2)));
-            dividir(num1,num2);
+            calculadora.lastResult = calculadora.div(numeros);
         break;
     }
-}
+};
 
+let calculadora = {
+    sum(numeros) {
+        let num1 = Number(numeros[0]);
+        let num2 = Number(numeros[1]);
+        result = num1+num2;
+        alert("El resultado de la Suma es: " + result);
+        return result;
+    },
     
+    res(numeros) {
+        let num1 = Number(numeros[0]);
+        let num2 = Number(numeros[1]);
+        result = num1-num2;
+        alert("El resultado de la Resta es: " + result);
+        return result;
+    },
+    
+    mul(numeros) {
+        let num1 = Number(numeros[0]);
+        let num2 = Number(numeros[1]);
+        result = num1*num2;
+        alert("El resultado de la Multiplicación es: " * result);
+        return result;
+    },
+
+    div(numeros) {
+        let num1 = Number(numeros[0]);
+        let num2 = Number(numeros[1]);
+        result = num1/num2;
+        alert("El resultado de la División es: " + result);
+        return result;
+    },
+    lastResult
+};
+
 // Da la bienvenida
 alert('Bienvenido/a a la calculadora de JavaScript');
 do{
     // Pide que operacion hacer
-    opcionOperacion = pedirOperacion();
+    opcion = operacion_a_Hacer();
+    // console.log("LastResult antes de sumar: " + calculadora.lastResult);
     
-    // Pide los numeros
+    // Pide los numeros y comprueba
     numeros = pedirYComprobarNumeros();
-    
+
     // Envia la opción elegida, y el array de numeros spliteados
-    resultadoFinal(opcionOperacion,numeros);
+    resultadoFinal(opcion,numeros);
     
     result = confirm("Quieres hacer otra operación?");
 } while (result);
