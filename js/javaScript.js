@@ -56,11 +56,11 @@ let pedirYComprobarNumeros = function () {
         // Comprobar que son numeros solo y no contienen letras y salir del bucle si es verdad
         if (isNaN(num1) === false && isNaN(num2) === false || num1 == 'r' || num1 == 'R' || num2 == 'R' || num2 == 'r') {
             if (num1 == 'r' || num1 == 'R') {
-                num1 = calculadora.lastResult;
+                num1 = calculadora2.lastResult;
                 arrayNumeros[0] = num1;
                 arrayNumeros = arrayNumeros.map(Number);
             } else if (num2 == 'r' || num2 == 'R') {
-                num2 = calculadora.lastResult;
+                num2 = calculadora2.lastResult;
                 arrayNumeros[1] = num2;
                 arrayNumeros = arrayNumeros.map(Number);
             } else {
