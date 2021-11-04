@@ -1,3 +1,27 @@
+class calculadora {
+    lastResult = 0;
+    sum(numero1, numero2) {
+        this.lastResult = numero1 + numero2;
+        alert("El resultado de la Suma es: " + this.lastResult);
+    }
+
+    res(numero1, numero2) {
+        this.lastResult = numero1 - numero2;
+        alert("El resultado de la Resta es: " + this.lastResult);
+    }
+
+    mul(numero1, numero2) {
+        this.lastResult = numero1 * numero2;
+        alert("El resultado de la Multiplicación es: " + this.lastResult);
+    }
+
+    div(numero1, numero2) {
+        this.lastResult = numero1 / numero2;
+        alert("El resultado de la División es: " + this.lastResult);
+    }
+};
+let calculadora2 = new calculadora();
+
 let operacion_a_Hacer = function () {
     let condition = true;
     let opcion = null;
@@ -30,21 +54,16 @@ let pedirYComprobarNumeros = function () {
         num1 = arrayNumeros[0] // (2) num1
         num2 = arrayNumeros[1] // (3) num2
         // Comprobar que son numeros solo y no contienen letras y salir del bucle si es verdad
-        if(isNaN(num1) === false && isNaN(num2) === false || num1 == 'r' || num1 == 'R' || num2 == 'R' || num2 == 'r'){
-            if(num1 == 'r' ||num1 == 'R'){
-                // console.log("Num1 es R:");
-                // console.log("Numero1:" + num1 + " Numero2: " + num2);
+        if (isNaN(num1) === false && isNaN(num2) === false || num1 == 'r' || num1 == 'R' || num2 == 'R' || num2 == 'r') {
+            if (num1 == 'r' || num1 == 'R') {
                 num1 = calculadora.lastResult;
                 arrayNumeros[0] = num1;
                 arrayNumeros = arrayNumeros.map(Number);
-            }else if(num2 == 'r' || num2 == 'R'){
-                // console.log("Num2 es R:");
-                // console.log("Numero1:" + num1 + " Numero2: " +num2);
+            } else if (num2 == 'r' || num2 == 'R') {
                 num2 = calculadora.lastResult;
                 arrayNumeros[1] = num2;
                 arrayNumeros = arrayNumeros.map(Number);
-            }else{
-                // console.log("NO HAY R Numero1: " + num1 + " Numero2: " +num2);
+            } else {
                 arrayNumeros = arrayNumeros.map(Number);
             };
             condition2 = false;
@@ -58,48 +77,24 @@ let pedirYComprobarNumeros = function () {
 let resultadoFinal = function (opcion, numeros) {
     switch (opcion) {
         case "+":
-            calculadora.sum(numeros[0], numeros[1]);
+            calculadora2.sum(numeros[0], numeros[1]);
             break;
 
         case "-":
-            calculadora.res(numeros[0], numeros[1]);
+            calculadora2.res(numeros[0], numeros[1]);
             break;
 
         case "*":
-            calculadora.mul(numeros[0], numeros[1]);
+            calculadora2.mul(numeros[0], numeros[1]);
             break;
 
         case "/":
-            calculadora.div(numeros[0], numeros[1]);
+            calculadora2.div(numeros[0], numeros[1]);
             break;
     }
 };
 
-let calculadora = {
-    lastResult: 0,
-    sum(numero1, numero2) {
-        this.lastResult = numero1 + numero2;
-        alert("El resultado de la Suma es: " + this.lastResult);
-    },
 
-    res(numero1, numero2) {
-        this.lastResult = numero1 - numero2;
-        alert("El resultado de la Resta es: " + this.lastResult);
-        this.lastResult = resultadoResta;
-    },
-
-    mul(numero1, numero2) {
-        this.lastResult = numero1 * numero2;
-        alert("El resultado de la Multiplicación es: " * this.lastResult);
-        this.lastResult = resultadoMulti;
-    },
-
-    div(numero1, numero2) {
-        this.lastResult = numero1 / numero2;
-        alert("El resultado de la División es: " + this.lastResult);
-        this.lastResult = resultadoDivi;
-    },
-};
 
 // Da la bienvenida
 alert('Bienvenido/a a la calculadora de JavaScript');
@@ -107,7 +102,6 @@ let opcionSalir = true;
 do {
     // Pide que operacion hacer
     let opcion = operacion_a_Hacer();
-    // console.log("LastResult antes de sumar: " + calculadora.lastResult);
 
     // Pide los numeros y comprueba
     let numeros = pedirYComprobarNumeros();
