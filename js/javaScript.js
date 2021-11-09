@@ -1,3 +1,21 @@
+/*-------Errores Personalizados----------*/
+// tiene que ir siempre con Error y delante el nombre del error
+class OperacionError extends Error {
+    constructor(message) {
+        super(message); // (1)
+        this.name = "OperacionError"; // (2)
+    }
+}
+class OperadorError extends Error {
+    constructor(message) {
+        super(message); // (1)
+        /* El nombre de la clase, saldria por defecto error porque la clase padre es Error, 
+            por eso lo indicamos en this.name cambiandolo al nombre que se llama la clase.
+        */
+        this.name = "OperadorError"; // (2)
+    }
+}
+/*---------------------------------------*/
 class calculadora {
     lastResult = 0;
     sum(numero1, numero2) {
@@ -28,12 +46,24 @@ let operacion_a_Hacer = function () {
     do {
         opcion = prompt('Que operación deseas hacer:\n Sumar(+)\n Restar(-)\n Multiplicar(*)\n Dividir(/)');
         opcion = opcion.trim();
-
+        
         if (opcion === "+" || opcion === "-" || opcion === "*" || opcion === "/") {
             condition = false;
         } else {
             alert("La operación introducida es erronea, Prueba de nuevo con una que esté indicada 🙄");
         }
+
+        // Produce un error en consola diciendo que "La operación introducida no es la correcta"
+        try {
+            if (condition === true) {
+                // llama a la clase de error personalizado OperacionError y muestra el mensaje
+                throw new OperacionError("La operación introducida no es la correcta");
+            }
+        } catch (error) {
+            console.error(`${error}`);
+        }
+
+        
     } while (condition);
     return opcion;
 };
@@ -53,6 +83,7 @@ let pedirYComprobarNumeros = function () {
         // y pase lo que pase al principio una vez comprobado los guarda en las variables
         num1 = arrayNumeros[0] // (2) num1
         num2 = arrayNumeros[1] // (3) num2
+        
         // Comprobar que son numeros solo y no contienen letras y salir del bucle si es verdad
         if (isNaN(num1) === false && isNaN(num2) === false || num1 == 'r' || num1 == 'R' || num2 == 'R' || num2 == 'r') {
             if (num1 == 'r' || num1 == 'R') {
@@ -69,6 +100,15 @@ let pedirYComprobarNumeros = function () {
             condition2 = false;
         } else {
             alert("Error tienen que ser numeros, numeros y no numeros y letras!");
+        }
+        // Produce un error en consola diciendo que "La operación introducida no es la correcta"
+        try {
+            if (condition2 === true) {
+                // llama a la clase de error personalizado OperadorError y muestra el mensaje
+                throw new OperadorError("La introducción de los operandos es erronea");
+            }
+        } catch (error) {
+            console.error(`${error}`);
         }
     } while (condition2);
     return arrayNumeros;
